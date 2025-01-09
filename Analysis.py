@@ -109,7 +109,9 @@ def writeResults():
 
         f.write("\n\n# Code Analysis SVG\n")
         f.write(f"""
-<img src="https://repo-analytics-backend.vercel.app/api?backgroundColor=black&titleColor=white&textColor=white&title={"Code Analysis"}&numFiles={len(fileExtensionsCounter)}&totalLines={total_lines}" alt="Code Analysis" />
+<img src="https://repo-analytics-backend.vercel.app/api?backgroundColor=black&titleColor=white&textColor=white&title={
+    "Code Analysis On " + time.strftime("%Y-%m-%d %H:%M:%S", time.gmtime())
+}&numFiles={len(fileExtensionsCounter)}&totalLines={total_lines}" alt="Code Analysis" />
 """)
 
 writeResults()
