@@ -29,6 +29,7 @@ if clone_repo_y_n == 'y':
         Repo.clone_from(repo_url, repo_path, progress=CloneProgress())
         print('[Log] Repository cloned successfully')
 
+    clear_dir()
     os.mkdir(repo_path)
 
     clone_repo(repo_url)
@@ -105,6 +106,11 @@ def writeResults():
 
         f.write("\n## Total File Lines: \n")
         f.write(str(total_lines))
+
+        f.write("\n\n# Code Analysis SVG\n")
+        f.write(f"""
+<img src="https://repo-analytics-backend.vercel.app/api?backgroundColor=black&titleColor=white&textColor=white&title={"Code Analysis"}&numFiles={len(fileExtensionsCounter)}&totalLines={total_lines}" alt="Code Analysis" />
+""")
 
 writeResults()
 print("[Log] Results written to file: Analytics.md")

@@ -1,23 +1,31 @@
 # File Type Analytics
 ## # of Files:
-18
+24
 
 ## # of Files Per Extension:
-.jpg : 10
+.png : 41
 
-.tsx : 9
+.js : 39
 
-.ts : 6
+.tgz : 20
 
-.js : 3
+.gltf : 15
 
-.json : 3
+.sample : 14
 
-.md : 3
+.json : 5
 
-.HEAD : 2
+.HEAD : 4
 
-.LICENSE : 1
+.yml : 3
+
+.md : 2
+
+.txt : 2
+
+.main : 2
+
+.pdf : 1
 
 .config : 1
 
@@ -27,43 +35,59 @@
 
 .packed-refs : 1
 
+.exclude : 1
+
 .idx : 1
 
 .pack : 1
 
 .rev : 1
 
-.master : 1
+.ico : 1
 
-.yml : 1
+.html : 1
 
-.png : 1
+.svg : 1
+
+.css : 1
 
 
 ## # of Lines Per Extension: 
-.tsx : 3053
+.json : 30727
 
-.md : 719
+.gltf : 6068
 
-.js : 445
+.js : 2406
 
-.ts : 245
+.sample : 868
 
-.packed-refs : 176
+.css : 235
 
-.json : 102
+.yml : 66
 
-.LICENSE : 21
+.svg : 55
+
+.txt : 18
 
 .config : 13
 
-.yml : 12
+.exclude : 6
 
-.HEAD : 2
+.HEAD : 4
+
+.packed-refs : 3
+
+.md : 2
+
+.main : 2
 
 .description : 1
 
-.master : 1
+.html : 1
+
+.pdf : 0
+
+.tgz : 0
 
 .index : 0
 
@@ -73,10 +97,14 @@
 
 .rev : 0
 
-.jpg : 0
+.ico : 0
 
 .png : 0
 
 
 ## Total File Lines: 
-4790
+40475
+
+# Code Analysis SVG
+
+<img src="https://repo-analytics-backend.vercel.app/api?backgroundColor=black&titleColor=white&textColor=white&title=Code Analysis&numFiles=24&totalLines=40475" alt="Code Analysis" />
