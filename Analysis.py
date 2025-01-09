@@ -6,10 +6,12 @@ from git import RemoteProgress
 
 import urllib.parse
 
+repo_name = ""
+
 # get directory to this file
 dir = os.path.dirname(os.path.realpath(__file__))   
 repo_path = os.path.join(dir, 'Repo')
-clone_repo_y_n = input('Clone a repository? (y/n) (if not then runs analysis on current contents of /Repo/ dir): ')
+clone_repo_y_n = input('Clone a Git repository? (y/n) (if not then runs analysis on current contents of /Repo/ dir): ')
 
 if clone_repo_y_n == 'y':
 
@@ -18,6 +20,7 @@ if clone_repo_y_n == 'y':
     # clear dir /Repo
     def clear_dir():
         print('[Log] Clearing previous directory...')
+        # os.chmod(repo_path, 0o777)
         shutil.rmtree(repo_path)
 
     # clone repo
@@ -27,17 +30,23 @@ if clone_repo_y_n == 'y':
                 print(message)
 
     def clone_repo(repo_url):
+        global repo_name
         print('[Log] Cloning repository...')
         Repo.clone_from(repo_url, repo_path, progress=CloneProgress())
+
+        repo_name = repo_url.split('/')[-1].split('.')[0]
         print('[Log] Repository cloned successfully')
 
-    clear_dir()
+    if os.path.exists(repo_path):
+        clear_dir()
+
     os.mkdir(repo_path)
 
     clone_repo(repo_url)
 
 # .ext : {linecount, filecount}
 fileExtensionsCounter = {}
+errors_count = 0
 
 default = {
     "line count": 0,
@@ -46,6 +55,8 @@ default = {
 
 # analysis
 def recursiveAnalytics(repo_path):
+    global errors_count
+
     for root, dirs, files in os.walk(repo_path):
         for file in files:
             # exclude files and directories beginning with a .
@@ -70,6 +81,7 @@ def recursiveAnalytics(repo_path):
                     fileExtensionsCounter[ext]["line count"] += len(file_contents)
                 except:
                     print("[Error] Could not analyze file: " + os.path.join(root, file))
+                    errors_count += 1
                     continue
 
             print("[Analyzing] " + os.path.join(root, file))
@@ -90,7 +102,12 @@ def fileExtensionsSortedByLineCount():
 
 # write results to file
 def writeResults():
-    with open(os.path.join(dir, 'README.md'), 'w+') as f:
+    global repo_name
+
+    if repo_name == "":
+        repo_name = input('Enter the name of the repository: ')
+
+    with open(os.path.join(dir, 'Analytics.md'), 'w+') as f:
         # f.write("# File Type Analytics\n")
         # f.write("## # of Files:\n" + str(len(fileExtensionsCounter)) + "\n\n")
 
@@ -109,12 +126,12 @@ def writeResults():
         # f.write("\n## Total File Lines: \n")
         # f.write(str(total_lines))
 
-        f.write("\n\n# Code Analysis\n")
+        f.write(f"\n\n# Code Analysis of {repo_name} \n")
         f.write(f"""
 <img src="https://repo-analytics-backend.vercel.app/api?backgroundColor=black&titleColor=white&textColor=white&title={
-    urllib.parse.quote("Code Analysis On " + time.strftime("%Y-%m-%d %H:%M:%S", time.gmtime()))
-}&numFiles={len(fileExtensionsCounter)}&totalLines={total_lines}" alt="Code Analysis" />
+    urllib.parse.quote("Analysis of '" + repo_name + "' @ " + time.strftime("%Y-%m-%d %H:%M:%S", time.gmtime()))
+}&numFiles={len(fileExtensionsCounter)}&totalLines={total_lines}&errors={errors_count}" alt="Code Analysis" />
 """)
 
 writeResults()
-print("[Log] Results written to README.md")
+print("[Log] Results written to Analytics.md")

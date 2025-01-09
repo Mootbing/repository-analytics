@@ -1,5 +1,7 @@
 
 
 # Code Analysis
+Experimental project to generate repository description and information
 
-<img src="https://repo-analytics-backend.vercel.app/api?backgroundColor=black&titleColor=white&textColor=white&title=Code%20Analysis%20On%202025-01-09%2019%3A49%3A24&numFiles=24&totalLines=40475" alt="Code Analysis" />
+## How to run
+run Analysis.py (& either clone a new repo or place ur repo inside /Repo/) then look at results in Analysis.md
