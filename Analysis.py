@@ -4,6 +4,8 @@ from git import Repo # pip install gitpython
 import time
 from git import RemoteProgress
 
+import urllib.parse
+
 # get directory to this file
 dir = os.path.dirname(os.path.realpath(__file__))   
 repo_path = os.path.join(dir, 'Repo')
@@ -110,7 +112,7 @@ def writeResults():
         f.write("\n\n# Code Analysis SVG\n")
         f.write(f"""
 <img src="https://repo-analytics-backend.vercel.app/api?backgroundColor=black&titleColor=white&textColor=white&title={
-    "Code Analysis On " + time.strftime("%Y-%m-%d %H:%M:%S", time.gmtime())
+    urllib.parse.quote("Code Analysis On " + time.strftime("%Y-%m-%d %H:%M:%S", time.gmtime()))
 }&numFiles={len(fileExtensionsCounter)}&totalLines={total_lines}" alt="Code Analysis" />
 """)
 
