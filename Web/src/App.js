@@ -2,6 +2,21 @@ import logo from './logo.svg';
 import './App.css';
 import { useState } from 'react';
 
+const beauitfyNumberString = (num) => {
+
+  num = parseInt(num);
+
+  //return k, m, b, t, etc
+  if (num > 999999999) {
+    return (num / 1000000000).toFixed(1) + "b";
+  } else if (num > 999999) {
+    return (num / 1000000).toFixed(1) + "m";
+  } else if (num > 999) {
+    return (num / 1000).toFixed(1) + "k";
+  }
+  return num;
+}
+
 function App() {
 
   const urlParams = new URLSearchParams(window.location.search);
@@ -13,8 +28,8 @@ function App() {
   const title = urlParams.get('title') || 'Hello World';
   const titleColor = urlParams.get('titleColor') || 'white';
 
-  const numFiles = urlParams.get('numFiles') || "0";
-  const totalLines = urlParams.get('totalLines') || "0";
+  const numFiles = beauitfyNumberString(urlParams.get('numFiles') || "1000");
+  const totalLines = beauitfyNumberString(urlParams.get('totalLines') || "0");
 
   const textColor = urlParams.get('textColor') || 'white';
 
@@ -26,13 +41,12 @@ function App() {
       <desc></desc>
 
       <g>
-        <text x={20} y={35} fontSize={20} fontWeight={700} fill={titleColor}>{title}</text>
-        {/* code horizontal group of [# of files, total # of lines] */}
-        <g>
-          <text x={20} y={60} fontSize={14} fill={textColor}>Files: {numFiles}</text>
-          <text x={numFiles.length*7.5 + 70} y={60} fontSize={14} fill={textColor}>Total Lines: {totalLines}</text>
-        </g>
+        <text x={20} y={35} fontSize={20} fontWeight={300} fill={titleColor}>{title}</text>
+        <text x={20} y={60} fontSize={14} fill={textColor} fontWeight={500}>Files: {numFiles}</text>
+        <text x={55 + (numFiles.length * 7.5)} y={60} fontSize={14} fill={textColor} fontWeight={500}>Total Lines: {(totalLines)}</text>
       </g>
+
+
     </svg>
   );
 }
