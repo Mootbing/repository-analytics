@@ -7,7 +7,7 @@ from git import RemoteProgress
 # get directory to this file
 dir = os.path.dirname(os.path.realpath(__file__))   
 repo_path = os.path.join(dir, 'Repo')
-clone_repo_y_n = input('Clone a repository? (y/n): ')
+clone_repo_y_n = input('Clone a repository? (y/n) (if not then runs analysis on current contents of /Repo/ dir): ')
 
 if clone_repo_y_n == 'y':
 
@@ -88,7 +88,7 @@ def fileExtensionsSortedByLineCount():
 
 # write results to file
 def writeResults():
-    with open(os.path.join(dir, 'Analytics.md'), 'w+') as f:
+    with open(os.path.join(dir, 'README.md'), 'w+') as f:
         f.write("# File Type Analytics\n")
         f.write("## # of Files:\n" + str(len(fileExtensionsCounter)) + "\n\n")
 
@@ -115,4 +115,4 @@ def writeResults():
 """)
 
 writeResults()
-print("[Log] Results written to file: Analytics.md")
+print("[Log] Results written to README.md")
