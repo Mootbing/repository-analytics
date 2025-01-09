@@ -91,25 +91,25 @@ def fileExtensionsSortedByLineCount():
 # write results to file
 def writeResults():
     with open(os.path.join(dir, 'README.md'), 'w+') as f:
-        f.write("# File Type Analytics\n")
-        f.write("## # of Files:\n" + str(len(fileExtensionsCounter)) + "\n\n")
+        # f.write("# File Type Analytics\n")
+        # f.write("## # of Files:\n" + str(len(fileExtensionsCounter)) + "\n\n")
 
-        f.write("## # of Files Per Extension:\n")
-        for ext in fileExtensionsSortedByFileCount():
-            f.write(f".{ext[0]} : {ext[1]['file count']}\n\n")
+        # f.write("## # of Files Per Extension:\n")
+        # for ext in fileExtensionsSortedByFileCount():
+        #     f.write(f".{ext[0]} : {ext[1]['file count']}\n\n")
 
         total_lines = 0
         for ext in fileExtensionsCounter:
             total_lines += fileExtensionsCounter[ext]["line count"]
 
-        f.write("\n## # of Lines Per Extension: \n")
-        for ext in fileExtensionsSortedByLineCount():
-            f.write(f".{ext[0]} : {ext[1]['line count']}\n\n")
+        # f.write("\n## # of Lines Per Extension: \n")
+        # for ext in fileExtensionsSortedByLineCount():
+        #     f.write(f".{ext[0]} : {ext[1]['line count']}\n\n")
 
-        f.write("\n## Total File Lines: \n")
-        f.write(str(total_lines))
+        # f.write("\n## Total File Lines: \n")
+        # f.write(str(total_lines))
 
-        f.write("\n\n# Code Analysis SVG\n")
+        f.write("\n\n# Code Analysis\n")
         f.write(f"""
 <img src="https://repo-analytics-backend.vercel.app/api?backgroundColor=black&titleColor=white&textColor=white&title={
     urllib.parse.quote("Code Analysis On " + time.strftime("%Y-%m-%d %H:%M:%S", time.gmtime()))
