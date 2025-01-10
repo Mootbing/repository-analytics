@@ -145,12 +145,13 @@ def writeResults():
 }
 &numFiles={len(fileExtensionsCounter)}
 &totalLines={total_lines}
-&errors={errors_count}
-&extensions={urllib.parse.quote(ext_array)}
-&fileCounter={urllib.parse.quote(file_counter_str)}
-&lineCounterPerFile={urllib.parse.quote(line_counter_per_file_str)}"
+&errors={errors_count}"
  alt="Code Analysis" />
 """.replace('\n', ''))
 
 writeResults()
 print("[Log] Results written to Analytics.md")
+
+# &extensions={urllib.parse.quote(ext_array)}
+# &fileCounter={urllib.parse.quote(file_counter_str)}
+# &lineCounterPerFile={urllib.parse.quote(line_counter_per_file_str)}
