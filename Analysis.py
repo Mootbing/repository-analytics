@@ -136,7 +136,7 @@ def writeResults():
         # print(line_counter_per_file_str)
 
         f.write(f"""\n\n# Code Analysis of {repo_name} \n\n""")
-        f.write(f"""<img src="https://repo-analytics-backend.vercel.app/api?backgroundColor=black
+        svg_src = (f"""<img src="https://repo-analytics-backend.vercel.app/api?backgroundColor=black
 &titleColor=white
 &textColor=white
 &subHeader={urllib.parse.quote(time.strftime("%Y-%m-%d %H:%M:%S", time.gmtime()))}
@@ -151,6 +151,8 @@ def writeResults():
 &lineCounterPerFile={urllib.parse.quote(line_counter_per_file_str)}"
  alt="Code Analysis" />
 """.replace('\n', ''))
+        
+        f.write(svg_src)
 
 writeResults()
 print("[Log] Results written to Analytics.md")
