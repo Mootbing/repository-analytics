@@ -108,29 +108,49 @@ def writeResults():
         repo_name = input('Enter the name of the repository: ')
 
     with open(os.path.join(dir, 'Analytics.md'), 'w+') as f:
-        # f.write("# File Type Analytics\n")
-        # f.write("## # of Files:\n" + str(len(fileExtensionsCounter)) + "\n\n")
 
         # f.write("## # of Files Per Extension:\n")
-        # for ext in fileExtensionsSortedByFileCount():
-        #     f.write(f".{ext[0]} : {ext[1]['file count']}\n\n")
-
+        file_counter = []
+        line_counter_per_file = []
+        ext_array = []
+        
         total_lines = 0
-        for ext in fileExtensionsCounter:
-            total_lines += fileExtensionsCounter[ext]["line count"]
+        for ext in fileExtensionsSortedByFileCount():
+            # f.write(f".{ext[0]} : {ext[1]['file count']}\n\n")
 
-        # f.write("\n## # of Lines Per Extension: \n")
-        # for ext in fileExtensionsSortedByLineCount():
-        #     f.write(f".{ext[0]} : {ext[1]['line count']}\n\n")
+            ext_array.append(ext[0])
+            file_counter.append(ext[1]['file count'])
+            line_counter_per_file.append(ext[1]['line count'])
 
-        # f.write("\n## Total File Lines: \n")
-        # f.write(str(total_lines))
+            total_lines += ext[1]['line count']
+
+        print(file_counter)
+        print(line_counter_per_file)
+        print(ext_array)
+        
+        ext_array = ','.join(map(str, ext_array))
+        file_counter_str = ','.join(map(str, file_counter))
+        line_counter_per_file_str = ','.join(map(str, line_counter_per_file))
+
+        # print(file_counter_str)
+        # print(line_counter_per_file_str)
 
         f.write(f"\n\n# Code Analysis of {repo_name} \n")
         f.write(f"""
-<img src="https://repo-analytics-backend.vercel.app/api?backgroundColor=black&titleColor=white&textColor=white&title={
-    urllib.parse.quote("Analysis of '" + repo_name + "' @ " + time.strftime("%Y-%m-%d %H:%M:%S", time.gmtime()))
-}&numFiles={len(fileExtensionsCounter)}&totalLines={total_lines}&errors={errors_count}" alt="Code Analysis" />
+<img src="https://repo-analytics-backend.vercel.app/api?backgroundColor=black
+&titleColor=white
+&textColor=white
+&subHeader={time.strftime("%Y-%m-%d %H:%M:%S", time.gmtime())}
+&title={
+    urllib.parse.quote("Analysis of '" + repo_name + "'")
+}
+&numFiles={len(fileExtensionsCounter)}
+&totalLines={total_lines}
+&errors={errors_count}
+&extensions={urllib.parse.quote(ext_array)}
+&fileCounter={urllib.parse.quote(file_counter_str)}
+&lineCounterPerFile={urllib.parse.quote(line_counter_per_file_str)}"
+alt="Code Analysis" />
 """)
 
 writeResults()
