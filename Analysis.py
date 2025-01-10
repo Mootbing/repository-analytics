@@ -136,9 +136,11 @@ def writeResults():
         # print(line_counter_per_file_str)
 
         f.write(f"""\n\n# Code Analysis of {repo_name} \n\n""")
-        svg_src = (f"""<img src="https://repo-analytics-backend.vercel.app/api?backgroundColor=black
+        svg_src = (f"""
+    <img src="https://repo-analytics-backend.vercel.app/api?
+backgroundColor=black
 &titleColor=white
-&textColor=white
+&textColor=%23C2C2C3
 &subHeader={urllib.parse.quote(time.strftime("%Y-%m-%d %H:%M:%S", time.gmtime()))}
 &title={
     urllib.parse.quote("Analysis of '" + repo_name + "'")
