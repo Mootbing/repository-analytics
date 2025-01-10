@@ -135,8 +135,7 @@ def writeResults():
         # print(file_counter_str)
         # print(line_counter_per_file_str)
 
-        f.write(f"\n\n# Code Analysis of {repo_name} \n")
-        f.write(f"""
+        f.write(f"""\n\n# Code Analysis of {repo_name} \n\n
 <img src="https://repo-analytics-backend.vercel.app/api?backgroundColor=black
 &titleColor=white
 &textColor=white
