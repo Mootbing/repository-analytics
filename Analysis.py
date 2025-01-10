@@ -139,7 +139,7 @@ def writeResults():
         f.write(f"""<img src="https://repo-analytics-backend.vercel.app/api?backgroundColor=black
 &titleColor=white
 &textColor=white
-&subHeader={time.strftime("%Y-%m-%d %H:%M:%S", time.gmtime())}
+&subHeader={urllib.parse.quote(time.strftime("%Y-%m-%d %H:%M:%S", time.gmtime()))}
 &title={
     urllib.parse.quote("Analysis of '" + repo_name + "'")
 }
