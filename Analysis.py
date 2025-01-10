@@ -151,7 +151,7 @@ def writeResults():
 &fileCounter={urllib.parse.quote(file_counter_str)}
 &lineCounterPerFile={urllib.parse.quote(line_counter_per_file_str)}"
 alt="Code Analysis" />
-""")
+""".replace('\n', ''))
 
 writeResults()
 print("[Log] Results written to Analytics.md")
