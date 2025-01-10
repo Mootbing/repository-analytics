@@ -7,3 +7,5 @@ Experimental project to generate repository description and information
 
 ## How to run
 run Analysis.py (& either clone a new repo or place ur repo inside /Repo/) then look at results in Analysis.md
+
+known bug: manual deletion of the /Repo/ directory after the first run may be needed to clone another repository via Analysis.py
